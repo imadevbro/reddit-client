@@ -16,7 +16,8 @@ export function Root() {
                     width: '100%',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'center'
+                    justifyContent: 'center',
+                    backgroundColor: 'black'
                 }}
             >
                 <Search
@@ -28,7 +29,9 @@ export function Root() {
                 />
             </Header>
             <Layout>
-                <Sider style={{backgroundColor: 'darkgray'}} />
+                <Sider style={{backgroundColor: '#EAEAEA', position: 'fixed', height: '100%'}}>
+                    <h1>It's a me</h1>
+                </Sider>
                 <Content>
                     <Outlet />
                 </Content>
