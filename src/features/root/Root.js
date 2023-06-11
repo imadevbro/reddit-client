@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 import { Layout, Input } from 'antd';
 const { Header, Content, Sider } = Layout;
 const { Search } = Input;
@@ -30,7 +30,13 @@ export function Root() {
             </Header>
             <Layout>
                 <Sider style={{backgroundColor: '#EAEAEA', position: 'fixed', height: '100%'}}>
-                    <h1>It's a me</h1>
+                    <div style={{display: 'flex', flexDirection: 'column', padding: '1rem'}}>
+                        <NavLink to="/">Home</NavLink>
+                        <NavLink to="/">Popular</NavLink>
+                        <NavLink to="/">Sports</NavLink>
+                        <NavLink to="/">Technology</NavLink>
+                        <NavLink to="/">Finance</NavLink>
+                    </div>
                 </Sider>
                 <Content>
                     <Outlet />
