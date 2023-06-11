@@ -32,10 +32,10 @@ export function Root() {
                 <Sider style={{backgroundColor: '#EAEAEA', position: 'fixed', height: '100%'}}>
                     <div style={{display: 'flex', flexDirection: 'column', padding: '1rem'}}>
                         <NavLink to="/">Home</NavLink>
-                        <NavLink to="/">Popular</NavLink>
-                        <NavLink to="/">Sports</NavLink>
-                        <NavLink to="/">Technology</NavLink>
-                        <NavLink to="/">Finance</NavLink>
+                        <NavLink to="/r/popular">Popular</NavLink>
+                        <NavLink to="/r/sports">Sports</NavLink>
+                        <NavLink to="/r/technology">Technology</NavLink>
+                        <NavLink to="/r/finance">Finance</NavLink>
                     </div>
                 </Sider>
                 <Content>

@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchFeedData = createAsyncThunk('feed/fetchFeedData', async () => {
-    const response = await fetch('https://www.reddit.com/r/popular.json?sr_detail=1');
+export const fetchFeedData = createAsyncThunk('feed/fetchFeedData', async (subreddit) => {
+    const response = await fetch(`https://www.reddit.com/${subreddit}.json?sr_detail=1`);
     const json = await response.json();
     console.log(json);
     return json.data.children;

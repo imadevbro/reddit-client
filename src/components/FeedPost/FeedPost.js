@@ -16,11 +16,11 @@ export function FeedPost(props) {
                 <Col span={22} style={{backgroundColor: "white", paddingLeft: '1rem', paddingRight: '1rem'}}>
                     <div style={{display: 'flex', alignItems: 'center'}}>
                         <img style={{width: '30px', height: 'auto', borderRadius: '50%'}} src={communityIcon} />
-                        <Link to="/" style={{fontFamily: 'Arial'}}>{props.data.subreddit_name_prefixed}</Link>
-                        <p style={{fontFamily: 'Arial'}}>Posted by JohnMan</p>
+                        <Link to={`/${props.data.subreddit_name_prefixed}`} style={{fontFamily: 'Arial'}}>{props.data.subreddit_name_prefixed}</Link>
+                        <p style={{fontFamily: 'Arial'}}>Posted by {props.data.author}</p>
                     </div>
                     <h2 style={{marginTop: '0.5rem'}}>{props.data.title}</h2>
-                    {props.data.preview ? <img style={{maxWidth: '100%', maxHeight: '80vh'}} src={props.data.preview.images[0].source.url.replace(/amp;/g, "")} /> : ""}
+                    {props.data.preview ? <img style={{maxWidth: '100%', maxHeight: '80vh'}} src={props.data.preview.images[0].source.url.replace(/amp;/g, "")} /> : <p>{props.data.selftext}</p>}
                     <div style={{ paddingTop: '1rem'}}>
                         <span>{props.data.num_comments}</span>
                         <CommentOutlined style={{fontSize: '20px'}}/>
