@@ -7,7 +7,6 @@ export function Home() {
     return (
         <div style={{display: 'flex', flexDirection: "column", alignItems: 'center', justifyContent: 'center'}}>
             <Feed subreddit={subreddit}/>
-            <Link to="counter">Go to counter</Link>
         </div>
     );
 }

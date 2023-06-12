@@ -2,31 +2,37 @@ import React from 'react';
 import { Col, Row } from 'antd';
 import { ArrowUpOutlined, ArrowDownOutlined, CommentOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import { formatUpVotes } from '../../utils/formatters';
+import { shortenThousand } from '../../utils/formatters';
+import ReactMarkdown from 'react-markdown';
 
 export function FeedPost(props) {
     const communityIcon = props.data.sr_detail.community_icon ? props.data.sr_detail.community_icon.replace(/amp;/g, "") : "https://logodownload.org/wp-content/uploads/2018/02/reddit-logo-16.png"
     return (
-            <Row style={{width: "700px", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)", marginTop:"1rem", justifySelf: 'center'}}>
-                <Col span={2} style={{backgroundColor: "#EAEAEA", display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '1rem'}}>
-                    <ArrowUpOutlined />
-                    <p>{formatUpVotes(props.data.ups)}</p>
-                    <ArrowDownOutlined />
-                </Col>
-                <Col span={22} style={{backgroundColor: "white", paddingLeft: '1rem', paddingRight: '1rem'}}>
-                    <div style={{display: 'flex', alignItems: 'center'}}>
-                        <img style={{width: '30px', height: 'auto', borderRadius: '50%'}} src={communityIcon} />
-                        <Link to={`/${props.data.subreddit_name_prefixed}`} style={{fontFamily: 'Arial'}}>{props.data.subreddit_name_prefixed}</Link>
-                        <p style={{fontFamily: 'Arial'}}>Posted by {props.data.author}</p>
-                    </div>
-                    <h2 style={{marginTop: '0.5rem'}}>{props.data.title}</h2>
-                    {props.data.preview ? <img style={{maxWidth: '100%', maxHeight: '80vh'}} src={props.data.preview.images[0].source.url.replace(/amp;/g, "")} /> : <p>{props.data.selftext}</p>}
-                    <div style={{ paddingTop: '1rem'}}>
-                        <span>{props.data.num_comments}</span>
-                        <CommentOutlined style={{fontSize: '20px'}}/>
-                    </div>
-                </Col>
-            </Row>
+            <Link to={`/${props.data.subreddit_name_prefixed}/${props.data.id}`} style={{textDecoration: 'none',
+            cursor: 'pointer',
+            color: 'inherit',
+            outline: 'none'}}>
+                <Row style={{width: "700px", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)", marginTop:"1rem", justifySelf: 'center'}}>
+                    <Col span={2} style={{backgroundColor: "#EAEAEA", display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '1rem'}}>
+                        <ArrowUpOutlined />
+                        <p>{shortenThousand(props.data.ups)}</p>
+                        <ArrowDownOutlined />
+                    </Col>
+                    <Col span={22} style={{backgroundColor: "white", paddingLeft: '1rem', paddingRight: '1rem'}}>
+                        <div style={{display: 'flex', alignItems: 'center'}}>
+                            <img style={{width: '30px', height: 'auto', borderRadius: '50%'}} src={communityIcon} />
+                            <Link to={`/${props.data.subreddit_name_prefixed}`} style={{fontFamily: 'Arial', fontSize: '14px', marginLeft: "0.5rem"}}>{props.data.subreddit_name_prefixed}</Link>
+                            <p style={{fontFamily: 'Arial', marginLeft: '1rem', fontSize: '14px', color: 'gray'}}>Posted by {props.data.author}</p>
+                        </div>
+                        <h2 style={{marginTop: '0.5rem'}}>{props.data.title}</h2>
+                        {props.data.preview ? <img style={{maxWidth: '100%', maxHeight: '60vh'}} src={props.data.preview.images[0].source.url.replace(/amp;/g, "")} /> : <div style={{maxHeight: '50vh', overflow: 'hidden'}}><ReactMarkdown children={props.data.selftext} /></div>}
+                        <div style={{ paddingTop: '1rem', marginBottom: '1rem', display: 'flex', alignItems: 'center'}}>
+                            <CommentOutlined style={{fontSize: '20px', fontFamily: 'Arial'}}/>
+                            <span style={{marginLeft: '0.5rem'}}>{shortenThousand(props.data.num_comments)}</span>
+                        </div>
+                    </Col>
+                </Row>
+            </Link>
 
     );
 }

@@ -1,4 +1,4 @@
-export const formatUpVotes = (number) => {
+export const shortenThousand = (number) => {
     if(number > 1000) {
         let formattedNumber = number / 1000;
         formattedNumber = Math.round(formattedNumber * 10) / 10;
