@@ -16,6 +16,8 @@ export function PostDetails() {
     const dispatch = useDispatch();
     const { subreddit, postId } = useParams();
 
+    const communityIcon = postDetails[0]?.data?.children[0].data.sr_detail.community_icon ? postDetails[0]?.data?.children[0].data.sr_detail.community_icon.replace(/amp;/g, "") : "https://logodownload.org/wp-content/uploads/2018/02/reddit-logo-16.png"
+
     useEffect(() => {
         dispatch(fetchPostDetails(`r/${subreddit}/${postId}`));
     }, [])
@@ -27,7 +29,7 @@ export function PostDetails() {
                 <div style={{maxWidth: '70%'}}>
                 <div style={{display: 'flex', flexDirection: "column", justifyContent: 'center'}}>
                     <div style={{display: 'flex', alignItems: 'center'}}>
-                        <img style={{width: '30px', height: 'auto', borderRadius: '50%'}} src="https://logodownload.org/wp-content/uploads/2018/02/reddit-logo-16.png" />
+                        <img style={{width: '30px', height: 'auto', borderRadius: '50%'}} src={communityIcon} />
                         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '0.5rem'}}>
                             <p style={{fontFamily: 'Arial', margin: 0, padding: 0}}>{postDetails[0]?.data?.children[0].data.subreddit_name_prefixed}</p>
                             <p style={{fontFamily: 'Arial', margin: 0, padding: 0}}>Posted by {postDetails[0]?.data?.children[0].data.author}</p>

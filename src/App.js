@@ -10,6 +10,7 @@ const router = createBrowserRouter(createRoutesFromElements(
     <Route index element={ <Home /> } />
     <Route path="/r/:subreddit" element={ <Home /> } />
     <Route path="/r/:subreddit/:postId" element={ <PostDetails /> } />
+    <Route path="/search" element={ <Home /> }/>
   </Route>
 
 ));

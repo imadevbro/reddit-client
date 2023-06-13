@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchPostDetails = createAsyncThunk('postDetails/fetchPostDetails', async(postId) => {
-    const response = await fetch(`https://www.reddit.com/${postId}.json`);
+    const response = await fetch(`https://www.reddit.com/${postId}.json?sr_detail=1`);
     const json = await response.json();
     console.log(json);
     return json;

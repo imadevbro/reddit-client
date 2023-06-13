@@ -1,0 +1,16 @@
+.selftext {
+  /* Set desired maximum height for the card content */
+  max-height: 50vh;
+  /* Apply the masking effect */
+  -webkit-mask-image: linear-gradient(to top, transparent, white 90%);
+  mask-image: linear-gradient(to top, transparent, white 90%);
+  /* Apply the blur effect on the masked area */
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  /* Enable text truncation after a certain number of lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 10; /* Set desired number of lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  }
+  

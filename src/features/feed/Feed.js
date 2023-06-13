@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { FeedPost } from '../../components/FeedPost/FeedPost';
-import { fetchFeedData, selectFeed, selectFeedLoading } from './feedSlice';
+import { fetchFeedData, fetchSearchData, selectFeed, selectFeedLoading } from './feedSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { FeedPostSkeleton } from '../../components/FeedPost/FeedPostSkeleton';
 
@@ -10,7 +10,12 @@ export function Feed(props) {
     const feedLoading = useSelector(selectFeedLoading);
 
     useEffect(() => {
-        dispatch(fetchFeedData(props.subreddit ? `r/${props.subreddit}` : 'r/popular'));
+        if(props.searchTerm) {
+            dispatch(fetchSearchData(props.searchTerm));
+        } else {
+            dispatch(fetchFeedData(props.subreddit ? `r/${props.subreddit}` : 'r/popular'));
+        }
+        
     }, [props.subreddit])
 
     return (
