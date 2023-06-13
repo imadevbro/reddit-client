@@ -1,0 +1,10 @@
+.post {
+    list-style-type: none;
+    margin-bottom: 0.5rem;
+    margin-right: 1.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.post:not(:last-child) { 
+    border-bottom: 2px solid rgba(5, 5, 5, 0.06);
+}

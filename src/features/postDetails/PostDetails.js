@@ -6,7 +6,7 @@ import { selectPostDetails, fetchPostDetails, selectPostDetailsLoading } from ".
 import { PostDetailsSkeleton } from "./PostDetailsSkeleton";
 import ReactMarkdown from 'react-markdown';
 import { useParams } from "react-router-dom";
-import { fetchFeedData, selectFeed, selectFeedLoading } from "../feed/feedSlice";
+import { fetchFeedData, selectFeed } from "../feed/feedSlice";
 import { SidebarFeed } from "../../components/SidebarFeed";
 
 const {Content, Sider } = Layout;
@@ -16,7 +16,6 @@ export function PostDetails() {
     const postDetails = useSelector(selectPostDetails);
     const postDetailsLoading = useSelector(selectPostDetailsLoading);
     const feedData = useSelector(selectFeed);
-    const feedDataLoading = useSelector(selectFeedLoading)
     const dispatch = useDispatch();
     const { subreddit, postId } = useParams();
 
@@ -31,10 +30,10 @@ export function PostDetails() {
         <Layout>
             { (postDetails && !postDetailsLoading) ? 
             (<Content style={{marginLeft: 300, marginTop: 20}}>
-                <div style={{maxWidth: '70%'}}>
+                <div style={{maxWidth: '60%'}}>
                 <div style={{display: 'flex', flexDirection: "column", justifyContent: 'center'}}>
                     <div style={{display: 'flex', alignItems: 'center'}}>
-                        <img style={{width: '30px', height: 'auto', borderRadius: '50%'}} src={communityIcon} />
+                        <img style={{width: '30px', height: 'auto', borderRadius: '50%'}} src={communityIcon} alt='subreddit-icon' />
                         <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', marginLeft: '0.5rem'}}>
                             <p style={{fontFamily: 'Arial', margin: 0, padding: 0}}>{postDetails[0]?.data?.children[0].data.subreddit_name_prefixed}</p>
                             <p style={{fontFamily: 'Arial', margin: 0, padding: 0}}>Posted by {postDetails[0]?.data?.children[0].data.author}</p>
