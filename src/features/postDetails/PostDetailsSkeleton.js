@@ -20,7 +20,6 @@ export function PostDetailsSkeleton() {
                     </div>
                 </Content>
                 <Sider style={{backgroundColor: '#EAEAEA', position: 'fixed', height: '100%', right: '0'}}>
-                    <h2>Hello</h2>
                 </Sider>
         </Layout>
     );

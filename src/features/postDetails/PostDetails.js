@@ -6,6 +6,8 @@ import { selectPostDetails, fetchPostDetails, selectPostDetailsLoading } from ".
 import { PostDetailsSkeleton } from "./PostDetailsSkeleton";
 import ReactMarkdown from 'react-markdown';
 import { useParams } from "react-router-dom";
+import { fetchFeedData, selectFeed, selectFeedLoading } from "../feed/feedSlice";
+import { SidebarFeed } from "../../components/SidebarFeed";
 
 const {Content, Sider } = Layout;
 
@@ -13,6 +15,8 @@ const {Content, Sider } = Layout;
 export function PostDetails() {
     const postDetails = useSelector(selectPostDetails);
     const postDetailsLoading = useSelector(selectPostDetailsLoading);
+    const feedData = useSelector(selectFeed);
+    const feedDataLoading = useSelector(selectFeedLoading)
     const dispatch = useDispatch();
     const { subreddit, postId } = useParams();
 
@@ -20,6 +24,7 @@ export function PostDetails() {
 
     useEffect(() => {
         dispatch(fetchPostDetails(`r/${subreddit}/${postId}`));
+        dispatch(fetchFeedData(`r/${subreddit}`));
     }, [])
 
     return (
@@ -44,9 +49,11 @@ export function PostDetails() {
                 </div>
             </Content>) : <PostDetailsSkeleton />
             }
-            <Sider style={{backgroundColor: '#EAEAEA', position: 'fixed', height: '100%', right: '0'}}>
-                <h2>Hello</h2>
-            </Sider>
+            <div style={{ width: '300px', position: 'fixed', height: '100%', right: 0, overflowY: 'scroll' }}>
+                <Sider style={{backgroundColor: '#EAEAEA'}} width={'100%'}>
+                    <SidebarFeed data={feedData} icon={communityIcon} />
+                </Sider>
+            </div>
         </Layout>
     );
 }
